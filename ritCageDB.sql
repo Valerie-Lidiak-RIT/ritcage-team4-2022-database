@@ -42,7 +42,7 @@ CREATE TABLE `borrower_contents` (
 
 LOCK TABLES `borrower_contents` WRITE;
 /*!40000 ALTER TABLE `borrower_contents` DISABLE KEYS */;
-INSERT INTO `borrower_contents` VALUES (2,4,'2022-01-15 12:00:00',3),(2,6,NULL,NULL),(3,3,'2022-03-24 11:30:56',1),(3,5,'2022-03-24 11:46:17',1);
+INSERT INTO `borrower_contents` VALUES (2,4,'2022-01-15 12:00:00',3),(2,6,NULL,NULL),(3,3,'2022-03-24 11:30:56',1),(3,5,'2022-03-24 11:46:17',1),(14,3022,NULL,NULL),(15,1,NULL,NULL),(15,3,'2022-04-06 19:54:31',1),(30,5555,NULL,NULL),(31,5555,'2022-04-07 14:26:25',1),(33,3609,'2022-04-08 18:26:18',1),(34,3609,'2022-04-08 18:35:21',1);
 /*!40000 ALTER TABLE `borrower_contents` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ CREATE TABLE `borrower_item` (
   PRIMARY KEY (`reservationID`),
   KEY `universityID` (`universityID`),
   CONSTRAINT `borrower_item_ibfk_2` FOREIGN KEY (`universityID`) REFERENCES `user` (`universityID`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `borrower_item` (
 
 LOCK TABLES `borrower_item` WRITE;
 /*!40000 ALTER TABLE `borrower_item` DISABLE KEYS */;
-INSERT INTO `borrower_item` VALUES (1,'569001234','2022-02-08 02:00:00',NULL),(2,'569002134','2022-01-08 12:00:00','2022-01-10 09:25:00'),(3,'569004321',NULL,'2022-01-20 11:10:00'),(9,'569002134',NULL,'2022-03-12 09:00:00'),(13,'569001234','2022-03-30 03:00:00',NULL);
+INSERT INTO `borrower_item` VALUES (1,'569001234','2022-02-08 02:00:00',NULL),(2,'569002134','2022-01-08 12:00:00','2022-01-10 09:25:00'),(3,'569004321',NULL,'2022-01-20 11:10:00'),(9,'569002134',NULL,'2022-03-12 09:00:00'),(13,'569001234','2022-03-30 03:00:00',NULL),(14,'569001234','2022-04-03 00:41:44','2022-04-06 11:15:05'),(15,'569001234','2022-04-03 11:42:39','2022-04-06 19:52:45'),(16,'569001234','2022-04-03 16:26:17',NULL),(17,'569001234','2022-04-03 17:18:23',NULL),(18,'569001234','2022-04-06 19:30:45',NULL),(19,'569001234','2022-04-06 20:04:47',NULL),(27,'569001234','2022-04-06 20:23:08',NULL),(30,'569001234','2022-04-07 14:15:38','2022-04-07 14:28:26'),(31,'569001234','2022-04-07 14:24:45','2022-04-07 14:27:59'),(32,'569001234','2022-04-08 18:02:29',NULL),(33,'569001234','2022-04-08 18:23:57','2022-04-08 18:25:50'),(34,'569001234','2022-04-08 18:34:10','2022-04-08 18:34:59');
 /*!40000 ALTER TABLE `borrower_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,7 +171,7 @@ CREATE TABLE `itemKitContent` (
   PRIMARY KEY (`typeID`,`kitID`),
   KEY `itemKitContent_ibfk_2` (`kitID`),
   CONSTRAINT `itemKitContent_ibfk_1` FOREIGN KEY (`typeID`) REFERENCES `item_type` (`typeID`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `itemKitContent_ibfk_2` FOREIGN KEY (`kitID`) REFERENCES `kit_type` (`kitID`)
+  CONSTRAINT `itemKitContent_ibfk_2` FOREIGN KEY (`kitID`) REFERENCES `kit_type` (`kitID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -181,7 +181,7 @@ CREATE TABLE `itemKitContent` (
 
 LOCK TABLES `itemKitContent` WRITE;
 /*!40000 ALTER TABLE `itemKitContent` DISABLE KEYS */;
-INSERT INTO `itemKitContent` VALUES (1,1,5),(1,2,4),(2,1,8),(3,2,15);
+INSERT INTO `itemKitContent` VALUES (1,1,5),(1,2,4),(1,26,6),(2,1,8),(3,1,1),(3,2,15),(3,26,4),(4,1,7),(4,2,3),(4,26,4),(5,1,2),(10,2,5),(12,1,333),(13,1,2),(17,1,1),(18,6,1);
 /*!40000 ALTER TABLE `itemKitContent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -205,7 +205,7 @@ CREATE TABLE `item_condition` (
 
 LOCK TABLES `item_condition` WRITE;
 /*!40000 ALTER TABLE `item_condition` DISABLE KEYS */;
-INSERT INTO `item_condition` VALUES (1,'available'),(2,'unavailable'),(3,'reserved'),(4,'damaged'),(5,'in repair'),(6,'obsolete');
+INSERT INTO `item_condition` VALUES (1,'new'),(2,'used'),(3,'damaged'),(4,'in repair'),(5,'retired');
 /*!40000 ALTER TABLE `item_condition` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +234,7 @@ CREATE TABLE `item_instance` (
 
 LOCK TABLES `item_instance` WRITE;
 /*!40000 ALTER TABLE `item_instance` DISABLE KEYS */;
-INSERT INTO `item_instance` VALUES (1,1,1),(2,1,2),(3,3,3),(4,2,3),(5,4,1),(6,3,2),(123456,1,1),(306090,5,2),(456789,1,5);
+INSERT INTO `item_instance` VALUES (1,1,1),(2,1,2),(3,3,3),(4,2,3),(5,4,1),(6,3,2),(3021,5,2),(3022,5,2),(3500,1,2),(3501,13,2),(3606,12,2),(3609,12,2),(3808,15,2),(5555,17,1),(6066,14,2),(6092,1,2),(6099,4,2),(12345,4,1),(36099,4,2),(123456,1,1),(306090,5,2),(456789,1,5);
 /*!40000 ALTER TABLE `item_instance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -252,7 +252,7 @@ CREATE TABLE `item_type` (
   `description` varchar(255) DEFAULT NULL,
   `cost` double DEFAULT NULL,
   PRIMARY KEY (`typeID`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -261,7 +261,7 @@ CREATE TABLE `item_type` (
 
 LOCK TABLES `item_type` WRITE;
 /*!40000 ALTER TABLE `item_type` DISABLE KEYS */;
-INSERT INTO `item_type` VALUES (1,'iPhone 1','Apple iPhone Pro','1 year old iPhone, silver, good battery life',700),(2,'iPhone 2','Apple iPhone 13','new iPhone, silver, good battery life',900),(3,'Laptop 1','Dell Laptop','3 years old, Windows 10, slow performance',500),(4,'Laptop 2','Microsoft Surface Pro','2 years old, good battery life, good performance',900),(5,'logitech keyboard 1','logitech k110','logitech keyboard',40),(10,'test','test model','testing',300),(11,'','','',0);
+INSERT INTO `item_type` VALUES (1,'iPhone 1','Apple iPhone Pro','1 year old iPhone, silver, good battery life',700),(2,'iPhone 2','Apple iPhone 13','new iPhone, silver, good battery life',900),(3,'Laptop 1','Dell Laptop','3 years old, Windows 10, slow performance',500),(4,'Laptop 2','Microsoft Surface Pro','2 years old, good battery life, good performance',900),(5,'logitech keyboard 1','logitech k110','logitech keyboard',40),(10,'test','test model','testing',300),(11,'','','',0),(12,'iPad Air','Apple iPad Air 2018','iPad',300),(13,'SamSung Galaxy','SamSung Galaxy','Android Device for Mobile Class',300),(14,'iPad Pro','iPad Pro 2018','For iOS class.',200),(15,'iPhone 8','iPhone 8','For iOS class - Bryan French',200),(16,'iPhone 7','iPhone 7','For ISTE class',100),(17,'Apple Magic Mouse','mouse1','Apple Magic mouse, new version with the stupid charging port on the bottom',40),(18,'Cisco Wildpacket Adaptor','wildpacket','Adaptor to measure wireless network usage',60);
 /*!40000 ALTER TABLE `item_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -283,7 +283,7 @@ CREATE TABLE `kit_type` (
   KEY `courseID` (`courseID`),
   CONSTRAINT `kit_type_ibfk_1` FOREIGN KEY (`universityID`) REFERENCES `user` (`universityID`),
   CONSTRAINT `kit_type_ibfk_2` FOREIGN KEY (`courseID`) REFERENCES `course` (`courseID`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -292,7 +292,7 @@ CREATE TABLE `kit_type` (
 
 LOCK TABLES `kit_type` WRITE;
 /*!40000 ALTER TABLE `kit_type` DISABLE KEYS */;
-INSERT INTO `kit_type` VALUES (1,'kit1','569004321',1,13),(2,'kit2','569004321',1,34),(3,'kit3','569004321',1,4),(4,'kit4','569005466',2,18),(5,'kit5','569005466',3,9),(6,'NSSA 245 Wireless kit','569005466',3,29),(12,'testKit','569004321',1,2),(16,'testKit2','569001234',1,21),(17,'NSSA241kit',NULL,2,31);
+INSERT INTO `kit_type` VALUES (1,'kit1','569004321',1,13),(2,'kit2','569004321',1,34),(5,'kit5','569005466',3,9),(6,'NSSA 245 Wireless kit','569005466',3,29),(16,'testKit2','569001234',1,21),(17,'NSSA241kit',NULL,2,31),(19,'testKit3','569001234',1,5),(24,'test kit again',NULL,1,123),(25,'test aging',NULL,1,666),(26,'Test kit 5',NULL,1,4);
 /*!40000 ALTER TABLE `kit_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,7 +322,7 @@ CREATE TABLE `reservation_contents` (
 
 LOCK TABLES `reservation_contents` WRITE;
 /*!40000 ALTER TABLE `reservation_contents` DISABLE KEYS */;
-INSERT INTO `reservation_contents` VALUES (1,1,2),(1,2,3),(2,2,1),(2,5,3);
+INSERT INTO `reservation_contents` VALUES (1,1,2),(1,2,3),(2,2,1),(2,5,3),(14,5,2),(15,3,1),(16,12,1),(17,1,1),(18,4,3),(19,16,1),(27,3,1),(30,17,1),(31,18,1),(32,18,2),(33,12,1),(34,12,1);
 /*!40000 ALTER TABLE `reservation_contents` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -388,4 +388,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-02 16:39:10
+-- Dump completed on 2022-04-09 20:41:39
